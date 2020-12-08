@@ -25,8 +25,8 @@ def main(ctx):
   linux_cxx("TOOLSET=clang COMPILER=clang++-3.7 CXXSTD=03,11,14,1z Job 11", "clang++", packages="clang-3.7", llvm_os="precise", llvm_ver="3.7", buildtype="boost", environment={'TOOLSET': 'clang', 'COMPILER': 'clang++-3.7', 'CXXSTD': '03,11,14,1z', 'DRONE_JOB_UUID': '17ba079149'}),
   linux_cxx("TOOLSET=clang COMPILER=clang++-3.8 CXXSTD=03,11,14,1z Job 12", "clang++-3.8", packages="clang-3.8 libstdc++-4.9-dev", llvm_os="precise", llvm_ver="3.8", buildtype="boost", environment={'TOOLSET': 'clang', 'COMPILER': 'clang++-3.8', 'CXXSTD': '03,11,14,1z', 'DRONE_JOB_UUID': '7b52009b64'}),
   linux_cxx("TOOLSET=clang COMPILER=clang++-3.9 CXXSTD=03,11,14,1z Job 13", "clang++-3.9", packages="clang-3.9 libstdc++-4.9-dev", llvm_os="precise", llvm_ver="3.9", buildtype="boost", environment={'TOOLSET': 'clang', 'COMPILER': 'clang++-3.9', 'CXXSTD': '03,11,14,1z', 'DRONE_JOB_UUID': 'bd307a3ec3'}),
-  linux_cxx("TOOLSET=clang COMPILER=clang++-4.0 CXXSTD=03,11,14,1z Job 14", "clang++-4.0", packages="clang-4.0", llvm_os="trusty", llvm_ver="4.0", buildtype="boost", environment={'TOOLSET': 'clang', 'COMPILER': 'clang++-4.0', 'CXXSTD': '03,11,14,1z', 'DRONE_JOB_UUID': 'fa35e19212'}),
-  linux_cxx("TOOLSET=clang COMPILER=clang++-5.0 CXXSTD=03,11,14,1z Job 15", "clang++-5.0", packages="clang-5.0", llvm_os="trusty", llvm_ver="5.0", buildtype="boost", environment={'TOOLSET': 'clang', 'COMPILER': 'clang++-5.0', 'CXXSTD': '03,11,14,1z', 'DRONE_JOB_UUID': 'f1abd67035'}),
+  linux_cxx("TOOLSET=clang COMPILER=clang++-4.0 CXXSTD=03,11,14,1z Job 14", "clang++-4.0", packages="clang-4.0", llvm_os="xenial", llvm_ver="4.0", buildtype="boost", environment={'TOOLSET': 'clang', 'COMPILER': 'clang++-4.0', 'CXXSTD': '03,11,14,1z', 'DRONE_JOB_UUID': 'fa35e19212'}),
+  linux_cxx("TOOLSET=clang COMPILER=clang++-5.0 CXXSTD=03,11,14,1z Job 15", "clang++-5.0", packages="clang-5.0", llvm_os="xenial", llvm_ver="5.0", buildtype="boost", environment={'TOOLSET': 'clang', 'COMPILER': 'clang++-5.0', 'CXXSTD': '03,11,14,1z', 'DRONE_JOB_UUID': 'f1abd67035'}),
   
     ]
 
