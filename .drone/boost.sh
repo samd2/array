@@ -3,6 +3,7 @@
 set -ex
 export TRAVIS_BUILD_DIR=$(pwd)
 export TRAVIS_BRANCH=$DRONE_BRANCH
+export TRAVIS_OS_NAME=${DRONE_JOB_OS_NAME:-linux}
 export VCS_COMMIT_ID=$DRONE_COMMIT
 export GIT_COMMIT=$DRONE_COMMIT
 export DRONE_CURRENT_BUILD_DIR=$(pwd)
@@ -26,12 +27,15 @@ python tools/boostdep/depinst/depinst.py array
 ./bootstrap.sh
 ./b2 headers
 
-echo '==================================> COMPILE'
+echo '==================================> BEFORE_SCRIPT'
+
+. $DRONE_CURRENT_BUILD_DIR/.drone/before-script.sh
+
+echo '==================================> SCRIPT'
 
 echo "using $TOOLSET : : $COMPILER ;" > ~/user-config.jam
 ./b2 -j 3 libs/array/test toolset=$TOOLSET cxxstd=$CXXSTD
 
 echo '==================================> AFTER_SUCCESS'
 
-cd $DRONE_CURRENT_BUILD_DIR
-. .drone/after-success.sh
+. $DRONE_CURRENT_BUILD_DIR/.drone/after-success.sh
