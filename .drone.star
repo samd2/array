@@ -4,8 +4,6 @@
 #
 # Copyright Rene Rivera 2020.
 
-# Configuration for https://cloud.drone.io/.
-
 # For Drone CI we use the Starlark scripting language to reduce duplication.
 # As the yaml syntax for Drone CI is rather limited.
 #
