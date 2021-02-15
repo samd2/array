@@ -220,7 +220,6 @@ jobs:
         run: echo "GHA_CONTAINER=${{ matrix.container }}" >> $GITHUB_ENV
 
       - name: linux
-        if: matrix.buildtype in ['96ad197d74-2319b6d45f', 'boost']
         shell: bash
         env:
           TRAVIS_BRANCH: ${{ github.base_ref }}
@@ -368,7 +367,6 @@ jobs:
         run: echo $DEVELOPER_DIR
 
       - name: "osx"
-        if: matrix.buildtype in ['boost']
         shell: bash
         env:
           TRAVIS_BRANCH: ${{ github.base_ref }}
