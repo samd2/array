@@ -298,7 +298,24 @@ jobs:
           export CC=${CC:-gcc}
           export PATH=~/.local/bin:/usr/local/bin:$PATH
 
-          if [ "$JOB_BUILDTYPE" == "boost" ]; then
+          if [ "$JOB_BUILDTYPE" == "96ad197d74-2319b6d45f" ]; then
+
+          echo '==================================> INSTALL'
+
+          BOOST_BRANCH=develop && [ "$TRAVIS_BRANCH" == "master" ] && BOOST_BRANCH=master || true
+          git clone -b $BOOST_BRANCH --depth 1 https://github.com/boostorg/assert.git ../assert
+          git clone -b $BOOST_BRANCH --depth 1 https://github.com/boostorg/config.git ../config
+          git clone -b $BOOST_BRANCH --depth 1 https://github.com/boostorg/core.git ../core
+          git clone -b $BOOST_BRANCH --depth 1 https://github.com/boostorg/static_assert.git ../static_assert
+          git clone -b $BOOST_BRANCH --depth 1 https://github.com/boostorg/throw_exception.git ../throw_exception
+
+          echo '==================================> SCRIPT'
+
+          mkdir __build__ && cd __build__
+          cmake ../test/test_cmake
+          cmake --build .
+
+          elif [ "$JOB_BUILDTYPE" == "boost" ]; then
 
           echo '==================================> INSTALL'
 
@@ -318,23 +335,6 @@ jobs:
 
           echo "using $TOOLSET : : $COMPILER ;" > ~/user-config.jam
           ./b2 -j 3 libs/array/test toolset=$TOOLSET cxxstd=$CXXSTD
-
-          elif [ "$JOB_BUILDTYPE" == "96ad197d74-2319b6d45f" ]; then
-
-          echo '==================================> INSTALL'
-
-          BOOST_BRANCH=develop && [ "$TRAVIS_BRANCH" == "master" ] && BOOST_BRANCH=master || true
-          git clone -b $BOOST_BRANCH --depth 1 https://github.com/boostorg/assert.git ../assert
-          git clone -b $BOOST_BRANCH --depth 1 https://github.com/boostorg/config.git ../config
-          git clone -b $BOOST_BRANCH --depth 1 https://github.com/boostorg/core.git ../core
-          git clone -b $BOOST_BRANCH --depth 1 https://github.com/boostorg/static_assert.git ../static_assert
-          git clone -b $BOOST_BRANCH --depth 1 https://github.com/boostorg/throw_exception.git ../throw_exception
-
-          echo '==================================> SCRIPT'
-
-          mkdir __build__ && cd __build__
-          cmake ../test/test_cmake
-          cmake --build .
 
           fi
   osx:
@@ -421,22 +421,5 @@ jobs:
 
           echo "using $TOOLSET : : $COMPILER ;" > ~/user-config.jam
           ./b2 -j 3 libs/array/test toolset=$TOOLSET cxxstd=$CXXSTD
-
-          elif [ "$JOB_BUILDTYPE" == "96ad197d74-2319b6d45f" ]; then
-
-          echo '==================================> INSTALL'
-
-          BOOST_BRANCH=develop && [ "$TRAVIS_BRANCH" == "master" ] && BOOST_BRANCH=master || true
-          git clone -b $BOOST_BRANCH --depth 1 https://github.com/boostorg/assert.git ../assert
-          git clone -b $BOOST_BRANCH --depth 1 https://github.com/boostorg/config.git ../config
-          git clone -b $BOOST_BRANCH --depth 1 https://github.com/boostorg/core.git ../core
-          git clone -b $BOOST_BRANCH --depth 1 https://github.com/boostorg/static_assert.git ../static_assert
-          git clone -b $BOOST_BRANCH --depth 1 https://github.com/boostorg/throw_exception.git ../throw_exception
-
-          echo '==================================> SCRIPT'
-
-          mkdir __build__ && cd __build__
-          cmake ../test/test_cmake
-          cmake --build .
 
           fi
