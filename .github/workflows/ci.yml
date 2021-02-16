@@ -222,7 +222,6 @@ jobs:
       - name: linux
         shell: bash
         env:
-          TRAVIS_BRANCH: ${{ github.base_ref }}
           CXX: ${{ matrix.cxx }}
           SOURCES: ${{ matrix.sources }}
           LLVM_OS: ${{ matrix.llvm_os }}
@@ -234,6 +233,7 @@ jobs:
           TOOLSET: ${{ matrix.toolset }}
           COMPILER: ${{ matrix.compiler }}
           CXXSTD: ${{ matrix.cxxstd }}
+          TRAVIS_BRANCH: ${{ github.base_ref }}
         run: |
           echo '==================================> SETUP'
           BOOST_CI_ORG=boostorg BOOST_CI_BRANCH=master && wget https://github.com/$BOOST_CI_ORG/boost-ci/archive/$BOOST_CI_BRANCH.tar.gz && tar -xvf $BOOST_CI_BRANCH.tar.gz && mkdir -p .github &&  mv boost-ci-$BOOST_CI_BRANCH .github/boost-ci
@@ -289,6 +289,7 @@ jobs:
           ls -al /usr/bin/c*
           echo '==================================> INSTALL AND COMPILE'
           set -e
+          set -x
           export TRAVIS_BUILD_DIR=$(pwd)
           export TRAVIS_BRANCH=${TRAVIS_BRANCH:-$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')}
           export VCS_COMMIT_ID=$GITHUB_SHA
@@ -369,7 +370,6 @@ jobs:
       - name: "osx"
         shell: bash
         env:
-          TRAVIS_BRANCH: ${{ github.base_ref }}
           CXX: ${{ matrix.cxx }}
           SOURCES: ${{ matrix.sources }}
           LLVM_OS: ${{ matrix.llvm_os }}
@@ -380,6 +380,7 @@ jobs:
           TOOLSET: ${{ matrix.toolset }}
           COMPILER: ${{ matrix.compiler }}
           CXXSTD: ${{ matrix.cxxstd }}
+          TRAVIS_BRANCH: ${{ github.base_ref }}
         run: |
           echo '==================================> SETUP'
           set -ex
@@ -392,6 +393,7 @@ jobs:
 
           echo '==================================> INSTALL AND COMPILE'
           set -e
+          set -x
           export TRAVIS_BUILD_DIR=$(pwd)
           export TRAVIS_BRANCH=${TRAVIS_BRANCH:-$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')}
           export VCS_COMMIT_ID=$GITHUB_SHA
