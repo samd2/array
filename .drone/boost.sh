@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -ex
+hostname
 export TRAVIS_BUILD_DIR=$(pwd)
 export DRONE_BUILD_DIR=$(pwd)
 export TRAVIS_BRANCH=$DRONE_BRANCH
